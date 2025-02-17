@@ -25,12 +25,10 @@ class ChatBotApp:
         self.embeddings = self.model_manager.embeddings
         # 创建UI组件
         # 加载 Markdown 文件并构建搜索模块相关数据
-        self.md_folder = "F:/obsidian"        # Markdown 文件所在目录
         self.persist_dir = "./chroma_db"       # 向量数据库保存位置
         # )
         self.conn=init_db(db_path="markdown_docs.db")
         self.docs = search_module.load_titles_from_db(self.conn)
-        # 此处可根据需求选择更新或使用现有向量库，此处简单起见直接更新：
         #创建标题索引
         self.vector_db = search_module.get_vector_store(self.docs, self.embeddings, self.persist_dir)
         self.bm25, self.tokenized_corpus = search_module.build_bm25_index(self.docs)

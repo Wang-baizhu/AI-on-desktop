@@ -4,11 +4,16 @@ from langchain.docstore.document import Document
 from langchain_chroma import Chroma
 from rank_bm25 import BM25Okapi
 
-
 # 初始化或连接 SQLite 数据库
 def init_db(db_path="markdown_docs.db"):
     conn = sqlite3.connect(db_path)
     return conn
+
+# 创建向量数据库（仅存储标题）
+def get_vector_store(docs, embeddings, persist_directory="chroma_db"):
+    vector_db = Chroma(persist_directory="chroma_db", embedding_function=embeddings)
+    vector_db.add_documents(docs)  #删除完向量表后通过此添加
+    return vector_db
 
 # 从数据库加载标题（仅存储在内存中）
 def load_titles_from_db(conn):
@@ -39,12 +44,6 @@ def build_bm25_index(docs):
     bm25 = BM25Okapi(tokenized_corpus)
     return bm25, tokenized_corpus
 
-# 创建向量数据库（仅存储标题）
-def get_vector_store(docs, embeddings, persist_directory="chroma_db"):
-
-    vector_db = Chroma(persist_directory="chroma_db", embedding_function=embeddings)
-    vector_db.add_documents(docs)  #删除完向量表后通过此添加
-    return vector_db
 # 语义 + 关键词搜索融合
 def search_titles_advanced(vector_db, query, docs, bm25, tokenized_corpus, conn, k=3):
     # 1. 语义搜索
