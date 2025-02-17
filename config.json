@@ -1,0 +1,22 @@
+{
+
+    "llm_models": {
+      "deepseek-r1": {
+        "api_key": "your-api-key",
+        "base_url": "https://api.lkeap.cloud.tencent.com/v1"
+        },  
+      "deepseek-r1:14b": {
+            "api_key": "ollama",
+            "base_url": "http://127.0.0.1:11434/v1"
+        },
+        "gpt-3.5-turbo": {
+          "api_key": "your-api-key",
+          "base_url": "https://api.openai.com/v1"
+        }
+      },
+
+    "embedding_model": {
+      "model": "nomic-embed-text:latest",
+      "base_url": "http://127.0.0.1:11434"
+    }
+}
