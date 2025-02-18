@@ -9,7 +9,8 @@
 4. 快捷键设置
     - alt + s：显示/隐藏窗口
     - alt + q：将剪切板的文字复制到输入框
-
+5. 效果图
+![[image.png]]
 # 第一次使用
 1. 配置你的模型，包括llm和embedding，llm只需兼容openai标准接口，embedding只支持ollama，配置提示词模板（可选），这些配置分别对应三个json文件
 2. 第一次使用请先执行update_knowledge.py,将更新你的知识库，一开始默认为该目录下的test_markdowns，你暂时可以先不修改，测试能不能跑通，如果需要切换为你自己的路径（包含md笔记），请继续往下看
