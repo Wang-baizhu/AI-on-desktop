@@ -8,3 +8,5 @@
 ## 更新你的标题索引
 1. 需要手动删除该目录下的chroma_db文件夹
 2. 如果没有注释search_module的get_vector_store()函数的vector_db.add_documents(docs)，直接执行main即可，会重新加载你的标题索引
+
+# 功能介绍
