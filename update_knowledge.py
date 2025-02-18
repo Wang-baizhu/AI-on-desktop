@@ -129,7 +129,7 @@ if __name__ == "__main__":
     user_input = input("请确定是否更新知识库(y/n):")
     if user_input.lower() == 'y':
         conn = init_db(db_path)
-        md_folder = "test_markdowns"
+        md_folder = "test_markdowns"   #更改为你的md路径
         exclude_folders = {"待整理", "template"}  # 要排除的文件夹名称
         print("知识库开始更新")
         for root, dirs, files in os.walk(md_folder):
