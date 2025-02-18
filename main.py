@@ -59,7 +59,7 @@ class ChatBotApp:
         keyboard.add_hotkey('alt+f', self.toggle_sidebar)
         keyboard.add_hotkey('alt+q', self.paste_from_clipboard)
         
-        self.root.protocol("WM_DELETE_WINDOW", self.hide_window)
+        self.root.protocol("WM_DELETE_WINDOW", self.quit_application)
 
         # 配置消息样式
         self.chat_history.tag_configure('thinking', 
@@ -348,7 +348,14 @@ class ChatBotApp:
                 messagebox.showinfo("成功", f"对话历史已成功导出到：\n{file_path}")
             except Exception as e:
                 messagebox.showerror("导出失败", f"导出文件时发生错误：\n{str(e)}")
-
+    def quit_application(self):
+        # 停止所有正在进行的AI生成
+        if self.current_ai_thread and self.current_ai_thread.is_alive():
+            self.stop_generation = True
+        
+        # 销毁窗口并终止进程
+        self.root.destroy()
+        self.root.quit()
     def build_history_prompt(self, conversation_name):
         """构建包含完整对话历史的提示"""
         prompt = ""
