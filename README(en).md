@@ -29,4 +29,4 @@ RAG consists of two parts: one requires adding your knowledge base path (in upda
 2. If you haven't commented out vector_db.add_documents(docs) in search_module's get_vector_store() function, running main.py will reload your title index.
 
 # Other Notes
-- This is my first small project, with zero experience, and most of it was completed with AI assistance. Please be kind and feel free to provide suggestions!
+- This is my first small project, with zero experience, and most of it was completed with AI assistance. Please feel free to provide suggestions!
