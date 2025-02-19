@@ -12,7 +12,11 @@ def init_db(db_path="markdown_docs.db"):
 # 创建向量数据库（仅存储标题）
 def get_vector_store(docs, embeddings, persist_directory="chroma_db"):
     vector_db = Chroma(persist_directory="chroma_db", embedding_function=embeddings)
-    vector_db.add_documents(docs)  #删除完向量表后通过此添加
+    u_input=input("是否更新索引(y/n):")
+    if u_input=="y":
+        vector_db.add_documents(docs) #添加向量索引后通过此添加
+    else:
+        print("更新完毕")  
     return vector_db
 
 # 从数据库加载标题（仅存储在内存中）
