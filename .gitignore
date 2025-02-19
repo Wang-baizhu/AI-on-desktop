@@ -1,5 +1,3 @@
-__pycache__/
-*.pyc
 *.json
 chroma_db/
 markdown_docs.db
