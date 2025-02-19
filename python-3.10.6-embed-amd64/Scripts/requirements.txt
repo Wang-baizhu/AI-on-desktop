@@ -1,0 +1,12 @@
+keyboard
+pywin32
+ttkbootstrap
+markdown
+tkhtmlview
+langchain==0.3.17
+jieba==0.42.1
+rank-bm25==0.2.2
+langchain_openai
+langchain_ollama
+langchain_chroma
+langchain_core
