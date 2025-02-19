@@ -16,7 +16,7 @@
 # 快速使用
 1. 配置好json文件（三个），config需要配置llm和embedding，其他两个是提示词配置
 2. 直接运行run.bat
-# 第一次使用
+# 自己搭建环境使用
 1. 配置环境，建议使用conda虚拟环境 到该文件茛目路执行pip install -r requirements.txt
 2. 配置你的模型，包括llm和embedding，llm只需兼容openai标准接口，embedding只支持ollama，配置提示词模板（可选），这些配置分别对应三个json文件
 3. 第一次使用请先执行update_knowledge.py,将更新你的知识库，一开始默认为该目录下的test_markdowns，你暂时可以先不修改，测试能不能跑通，如果需要切换为你自己的路径（包含md笔记），请继续往下看
