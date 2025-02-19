@@ -13,6 +13,9 @@
     - alt + q：将剪切板的文字复制到输入框
 5. 效果图
 ![项目截图](image.png)
+# 快速使用
+1. 配置好json文件（三个），config需要配置llm和embedding，其他两个是提示词配置
+2. 直接运行run.bat
 # 第一次使用
 1. 配置环境，建议使用conda虚拟环境 到该文件茛目路执行pip install -r requirements.txt
 2. 配置你的模型，包括llm和embedding，llm只需兼容openai标准接口，embedding只支持ollama，配置提示词模板（可选），这些配置分别对应三个json文件
