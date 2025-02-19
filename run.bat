@@ -1,9 +1,9 @@
 @echo off
-REM 设置嵌入式 Python 环境的相对路径
-set PYTHON_HOME=python-3.10.6-embed-amd64
+REM 设置 Python 的环境变量
+set PYTHONPATH=%~dp0
 
 REM 调用嵌入式 Python 解释器运行脚本
-"%PYTHON_HOME%\python.exe" "main.py"
+"python-3.10.6-embed-amd64\python.exe" "main.py"
 
 REM 检查脚本是否成功运行
 if %ERRORLEVEL% == 0 (
