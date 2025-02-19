@@ -1,3 +1,10 @@
+import os
+import sys
+
+# 获取当前脚本所在的目录
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
 import tkinter as tk
 import keyboard
 import win32clipboard
@@ -12,6 +19,7 @@ from model_manager import ModelManager
 from ai_responder import AIResponder
 from search_module import init_db
 from markdown_renderer import render_markdown_window
+
 
 class ChatBotApp:
     def __init__(self):

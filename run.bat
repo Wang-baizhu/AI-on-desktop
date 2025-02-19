@@ -1,6 +1,9 @@
 @echo off
-REM 设置 Python 的环境变量
-set PYTHONPATH=%~dp0
+REM 设置工作目录为脚本所在的目录
+cd /d "%~dp0"
+
+REM 设置 PYTHONPATH，将当前目录添加到模块搜索路径
+set PYTHONPATH=%CD%
 
 REM 调用嵌入式 Python 解释器运行脚本
 "python-3.10.6-embed-amd64\python.exe" "main.py"
