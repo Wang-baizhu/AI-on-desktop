@@ -1,6 +1,5 @@
 import os
 import sys
-
 # 获取当前脚本所在的目录
 current_dir = os.path.dirname(os.path.abspath(__file__))
 if current_dir not in sys.path:
@@ -161,7 +160,7 @@ class ChatBotApp:
             font=("仿宋 Regular",14),
             maxundo=1)  # 限制撤销次数以节省内存
         self.user_input.grid(row=0, column=0,  rowspan=2,sticky="ew", padx=5, pady=5)
-        self.user_input.bind("<Return>", self.send_message)
+        self.user_input.bind("<Return>", self.on_enter_key)
         
         self.send_button = ttk.Button(self.input_frame, text="发送", command=self.send_message,
                                     style='primary.TButton')
@@ -210,7 +209,22 @@ class ChatBotApp:
         self.user_input.configure(yscrollcommand=self.input_scrollbar.set)
 
         # 将滚动条与输入框关联
-
+    def on_enter_key(self, event):
+        """处理回车键事件"""
+        # 检查是否按下Control键（Windows/Linux用0x0004，Mac用0x0008）
+        ctrl_pressed = (event.state & 0x4) or (event.state & 0x8)
+        
+        if ctrl_pressed:
+            # 在光标位置插入换行符
+            self.user_input.insert(tk.INSERT, "\n")
+            # 自动调整输入框高度
+            self.on_input_change(event)
+            # 阻止默认回车行为
+            return "break"
+        else:
+            # 发送消息并阻止默认回车行为
+            self.send_message()
+            return "break"
 
     def show_search_result(self, content):
         """显示搜索结果的浮动窗口，并将 Markdown 格式的笔记渲染为 HTML 显示"""
@@ -778,15 +792,47 @@ class ChatBotApp:
         self.load_conversation()
 
 
+    def show_window(self):
+        """显示窗口并定位到鼠标位置"""
+        # 获取鼠标坐标
+        mouse_x = self.root.winfo_pointerx()
+        mouse_y = self.root.winfo_pointery()
+        
+        # 使用固定窗口尺寸（与初始化尺寸一致）
+        window_width = 500
+        window_height = 600
+        
+        # 计算窗口位置（居中于鼠标）
+        x = mouse_x - window_width // 2
+        y = mouse_y - window_height // 2
+        
+        # 确保窗口在屏幕范围内
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        
+        # 水平边界检查
+        if x + window_width > screen_width:
+            x = screen_width - window_width
+        if x < 0:
+            x = 0
+        
+        # 垂直边界检查
+        if y + window_height > screen_height:
+            y = screen_height - window_height
+        if y < 0:
+            y = 0
+        
+        # 设置窗口位置和尺寸
+        self.root.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        self.root.deiconify()
+        self.user_input.focus_set()
+
     def toggle_window(self):
+        """切换窗口可见性并定位到鼠标位置"""
         if self.root.winfo_viewable():
             self.hide_window()
         else:
             self.show_window()
-
-    def show_window(self):
-        self.root.deiconify()
-        self.user_input.focus_set()
 
     def hide_window(self):
         self.root.withdraw()
