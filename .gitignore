@@ -1,3 +1,4 @@
 *.json
 chroma_db/
 markdown_docs.db
+__pycahe__/
