@@ -14,6 +14,7 @@
 5. 效果图
 ![项目截图](image.png)
 # 快速使用
+https://www.bilibili.com/video/BV1tZAoe3ETz?t=98.4
 1. 配置好json文件（三个），config需要配置llm和embedding，其他两个是提示词配置
 2. 直接运行run.bat
 # 自己搭建环境使用
