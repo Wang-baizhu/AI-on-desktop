@@ -1,5 +1,5 @@
 *.json
 chroma_db/
 markdown_docs.db
-__pycahe__/
 python-3.10.6-embed-amd64/
+__pycache__/
